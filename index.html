@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+        }
+        .testimonial-slider {
+            transition: transform 0.5s ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #5865F2;" class="min-h-screen relative">
+        
+        <!-- Ad Popup -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div class="relative animate-pulse">
+                <div class="absolute inset-0 bg-white opacity-25 animate-ping rounded-lg"></div>
+                <div class="relative bg-white p-4 rounded-lg shadow-xl">
+                    <button onclick="this.parentElement.parentElement.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    <img src="https://iili.io/2yLLIAN.jpg" alt="Advertisement" class="max-w-full sm:max-w-sm rounded-lg">
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Section 1 -->
+        <div class="text-center pt-16 pb-8 px-4">
+            
+            <img src="https://iili.io/2yLLIAN.jpg" alt="Logo" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+            
+            <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2">Test</h1>
+            <p class="text-lg sm:text-xl text-white opacity-90 mb-8">Test</p>
+
+            <!-- Social Media Badges -->
+            <div class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+                
+            </div>
+        </div>
+
+        <!-- Section 2 - Products -->
+        <div class="px-4 py-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-8">PRODUK</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                
+                <div class="relative bg-white rounded-lg shadow-lg overflow-hidden border-2 border-yellow-400 transform hover:scale-105 transition-transform">
+                    
+                    <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full font-semibold text-sm z-10">
+                        Best Seller
+                    </div>
+                    
+                    
+                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full font-semibold text-sm z-10">
+                        -20%
+                    </div>
+                    
+                    
+                    <div class="relative">
+                        <img src="https://iili.io/2yLLIAN.jpg" alt="BOT" class="w-full h-48 object-cover">
+                        
+                        <div class="absolute inset-0 bg-yellow-400 opacity-10"></div>
+                        
+                    </div>
+                    
+                    <div class="p-4 bg-gradient-to-br from-white to-yellow-50">
+                        <h3 class="text-xl font-bold mb-2">BOT</h3>
+                        <div class="mb-2">
+                            
+                            <div class="space-y-1">
+                                <p class="text-sm text-gray-500 line-through">RM 18</p>
+                                <p class="text-2xl font-bold text-red-600">
+                                    RpNaN
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <p class="text-gray-600 mb-4"></p>
+                        <button onclick="window.open('https://wa.me/60169054297?text=Saya%20ingin%20membeli%20BOT%20berikut', '_blank')" 
+                            class="w-full py-2 rounded-md text-white transition-colors bg-yellow-500 hover:bg-yellow-600">
+                            Beli Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Section 3 - Testimonials -->
+        <div class="px-4 py-8 bg-white">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">TESTIMONIAL</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative h-48 sm:h-64 overflow-hidden rounded-lg">
+                    <div class="flex testimonial-slider h-full" id="testimonialSlider">
+                        
+                    </div>
+                </div>
+                <div class="flex justify-center mt-4 gap-2">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <p class="text-sm sm:text-base"></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let currentTestimonial = 0;
+        const testimonialCount = 0;
+        
+        function showTestimonial(index) {
+            const slider = document.getElementById('testimonialSlider');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            
+            currentTestimonial = index;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-blue-500', i === index);
+                dot.classList.toggle('bg-gray-300', i !== index);
+            });
+        }
+
+        setInterval(() => {
+            if (testimonialCount > 1) {
+                showTestimonial((currentTestimonial + 1) % testimonialCount);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
